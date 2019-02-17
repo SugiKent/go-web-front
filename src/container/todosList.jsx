@@ -12,6 +12,12 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchTodos: () => {
       dispatch(actions.fetchTodos());
+    },
+    updateTodo: (value) => {
+      dispatch(actions.patchTodo(value));
+    },
+    deleteTodo: (e, id) => {
+      dispatch(actions.submitDeleteTodo(id));
     }
   }
 }

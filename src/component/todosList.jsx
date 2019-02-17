@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoListForm from './todoListForm'
 
 export default class TodosList extends React.Component {
   componentDidMount() {
@@ -7,13 +8,16 @@ export default class TodosList extends React.Component {
   };
 
   render() {
-    const {todos} = this.props
+    const {todos, updateTodo, deleteTodo} = this.props
 
-    if (this.props.todos.length > 0) {
+    if (todos.length > 0) {
       return (
         <ul>
           {todos.map((todo, index) => (
-            <li key={index}>{todo.title}</li>
+            <li key={index} style={{display: "flex"}}>
+              <button onClick={e => deleteTodo(e, todo.id)}>&times;</button>
+              <TodoListForm onSubmit={updateTodo} todo={todo} />
+            </li>
           ))}
         </ul>
       )
